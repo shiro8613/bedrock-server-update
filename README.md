@@ -1,1 +1,1 @@
-#　Minecraft Bedrock Server esay update tool
+# Minecraft Bedrock Server esay update tool
