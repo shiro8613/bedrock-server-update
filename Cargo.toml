@@ -1,0 +1,15 @@
+[package]
+name = "bedrock-server-update"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bytes = "1.7.2"
+rand = { version = "0.8.5", features = [] }
+regex = { version = "1.10.6", features = [] }
+reqwest = { version = "0.12", features = ["json"] }
+scraper = "0.20.0"
+thiserror = "1.0.64"
+tokio = { version = "1", features = ["full"] }
+url = "2.5.2"
+zip = "2.2.0"
