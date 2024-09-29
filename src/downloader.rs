@@ -51,8 +51,9 @@ impl Downloader {
             .send()
             .await?;
         let text = resp.text().await?;
+        let grep_text = grep_name();
 
-        if let Some(text) = self.grep(text, "bin-linux") {
+        if let Some(text) = self.grep(text, grep_text.as_str()) {
             let url = self.remove_html(text).unwrap();
             self.download_url = Some(url.clone());
             self.version = Some(utils::parse_version(url));
@@ -100,3 +101,9 @@ impl Downloader {
         }
     }
 }
+
+#[cfg(target_os = "windows")]
+fn grep_name() -> String { String::from("bin-win") }
+
+#[cfg(target_os = "linux")]
+fn grep_name() -> String { String::from("bin-linux") }
