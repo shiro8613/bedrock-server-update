@@ -26,10 +26,9 @@ pub fn write_version(path: &str, version :String) -> Result<(), Box<dyn Error>> 
 
 pub fn parse_version(file_name :String) -> String {
     let url = Url::parse(file_name.as_str()).unwrap();
-    let path = url.path_segments().map(|c| c.collect::<Vec<_>>()).unwrap();
-    if let Some(&name) = path.get(path.len() -1) {
-        let version = name.replace(".zip", "").replace("bedrock-server-", "");
-        version
+    let paths = url.path_segments().map(|c| c.collect::<Vec<_>>()).unwrap();
+    if let Some(&name) = paths.last() {
+        name.replace(".zip", "").replace("bedrock-server-", "")
     } else {
         String::new()
     }

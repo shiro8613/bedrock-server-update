@@ -1,7 +1,7 @@
 use std::error::Error;
 use std::fs::{create_dir_all, read_dir, remove_dir_all, remove_file, File};
 use std::io::{Cursor, copy, Read, Seek};
-use std::path::{PathBuf};
+use std::path::PathBuf;
 use bytes::Bytes;
 use zip::ZipArchive;
 
@@ -75,9 +75,11 @@ impl Extractor {
             #[cfg(unix)]
             {
                 use std::os::unix::fs::PermissionsExt;
+                use std::fs::Permissions;
+                use std::fs;
 
                 if let Some(mode) = file.unix_mode() {
-                    fs::set_permissions(&out_path, fs::Permissions::from_mode(mode))?;
+                    fs::set_permissions(&out_path, Permissions::from_mode(mode))?;
                 }
             }
 
